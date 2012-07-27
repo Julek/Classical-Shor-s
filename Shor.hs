@@ -8,7 +8,9 @@ main = do
          f = shor n
      if(f == Nothing)
           then putStrLn (show n ++ " is prime.")
-          else putStrLn ("factors of " ++ show n ++ " found: " ++ (show . fromJust $ f))
+          else case (fromJust f) of
+                    (Left x) -> putStrLn ("factors of " ++ show n ++ " found: " ++ (show x))
+                    (Right x) -> putStrLn ("factors of " ++ show n ++ " found: " ++ (show x))
      return ()
      
 shor :: Integer -> Maybe (Either Integer (Integer, Integer))
